@@ -73,3 +73,13 @@ store.dispatch(incrementCounterAction())
 store.dispatch(incrementCounterAction())
 store.dispatch(decrementCounterAction())
 store.dispatch(decrementCounterAction())
+
+
+
+
+//! Import createStore from Redux
+//! Defining Constant
+//! State
+//! Dispatch Action - type - payload
+//! Creat Reducer For Counter
+//! Creat Store For Counter
