@@ -49,15 +49,15 @@ const todosReduce = (state = initialTodoState, action) => {
         case SUCCESS: {
             return {
                 ...state,
-                todos: state.payload,
+                todos: action.payload,
                 isLoging: false
             }
         }
         case FAILED: {
             return {
                 ...state,
-                error: state.payload,
-                isLoging: false
+                isLoging: false,
+                error: action.payload
             }
         }
         default:
@@ -70,15 +70,14 @@ const fetchData = () => {
     return (dispatch) => {
         dispatch(getRequestAction())
         axios.get(API_URL)
-        .then((todos)=>{
-            todos.map((todo)=>{
-                return(
-                    todo
-                )
-            })
+        .then((res)=>{
+            const todos = res.data;
+            const title = todos.map((todo)=> todo.title);
+            dispatch(getSuccessAction(title))
         })
         .catch((error)=>{
-            console.log(error.message)
+            const errorMessage = (error.message);
+            dispatch(getErrorAction(errorMessage))
         })
     }
 }
